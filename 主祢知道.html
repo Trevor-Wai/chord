@@ -80,6 +80,15 @@ Outro
 | Fm7 - - Cm/Eb  | Dbadd9 | Abmaj9 | Dbadd9 - Dbm6 - |
 `;
 
+    // Call after everything loads
+    function initControls() {
+      document.title = songTitle;
+      document.getElementById("song-title-label").textContent = songTitle;
+      renderKeyButtons();
+      renderShiftButtons();
+      transposeAndDisplay(0);
+    }
+
   </script>
   <script src="script.js"></script>
 
