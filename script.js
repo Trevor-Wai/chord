@@ -21,6 +21,15 @@ const keyButtonsEl = document.getElementById('key-buttons');
 const shiftButtonsEl = document.getElementById('shift-buttons');
 const toggleBtn = document.getElementById('toggle-notation');
 
+function initControls() {
+  document.title = songTitle;
+  document.getElementById("song-title-label").textContent = songTitle;
+
+  renderKeyButtons();
+  renderShiftButtons();
+  transposeAndDisplay(0);
+}
+
 function getSemitoneShift(fromKey, toKey) {
   const fromIndex = chords.indexOf(fromKey);
   const toIndex = chords.indexOf(toKey);
