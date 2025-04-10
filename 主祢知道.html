@@ -7,7 +7,6 @@
 </head>
 <body>
 
-  <div id="header-placeholder"></div>
   
   <script>
     let songTitle = '主祢知道'; // change (1)
@@ -80,28 +79,8 @@ Outro
 | Fm7 - - Cm/Eb  | Dbadd9 | Abmaj9 | Dbadd9 - Dbm6 - |
 `;
 
-    // Call after everything loads
-    function initControls() {
-      document.title = songTitle;
-      document.getElementById("song-title-label").textContent = songTitle;
-      renderKeyButtons();
-      renderShiftButtons();
-      transposeAndDisplay(0);
-    }
-
   </script>
   <script src="script.js"></script>
-
-  <script>
-    fetch('header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        setTimeout(() => {
-          if (typeof initControls === 'function') initControls();
-        }, 0);
-      });
-  </script>
 
 </body>
 </html>
