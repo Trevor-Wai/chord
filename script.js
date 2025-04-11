@@ -2,24 +2,31 @@ const chords = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
 const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-document.title = songTitle;
-document.getElementById('song-title').textContent = songTitle;
 
 let targetKey = baseKey; 
 let lastTargetKey = targetKey;
 let currentShift = 0;
-let useFlats = flatToSharp[baseKey] ? true : false;
+let useFlats = flatToSharp[baseKey];
 let shouldClickSelected = false;
-
-baseKey = flatToSharp[baseKey] || baseKey;
-targetKey = flatToSharp[targetKey] || targetKey;
-
-
 
 const songEl = document.getElementById('song');
 const keyButtonsEl = document.getElementById('key-buttons');
 const shiftButtonsEl = document.getElementById('shift-buttons');
 const toggleBtn = document.getElementById('toggle-notation');
+
+
+document.title = songTitle;
+document.getElementById('song-title').textContent = songTitle;
+
+document.getElementById('h1').textContent = 'Hymn Chord Database';
+document.getElementById('key-button-text').textContent = 'Select the key you want to play in: (Click, Left & Right Arrow or A & D)';
+document.getElementById('capo-button-text').textContent = 'Capo: (Click, Up & Down Arrow or W & S)';
+document.getElementById('flat-sharp').textContent = 'Switch between sharp and flats: (Click or Enter)';
+toggleBtn.textContent = useFlats ? 'Show Sharps' : 'Show Flats';
+
+
+baseKey = flatToSharp[baseKey] || baseKey;
+targetKey = flatToSharp[targetKey] || targetKey;
 
 
 function getSemitoneShift(fromKey, toKey) {
