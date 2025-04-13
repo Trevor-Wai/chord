@@ -18,11 +18,13 @@ const toggleBtn = document.getElementById('toggle-notation');
 document.title = songTitle;
 document.getElementById('song-title').textContent = songTitle;
 
-document.getElementById('h1').textContent = 'Hymn Chord Database';
+document.getElementById('h1').textContent = 'Hymn Chords';
 document.getElementById('key-button-text').textContent = 'Select the key you want to play in: (Click, Left & Right Arrow or A & D)';
 document.getElementById('capo-button-text').textContent = 'Capo: (Click, Up & Down Arrow or W & S)';
 document.getElementById('flat-sharp').textContent = 'Switch between sharp and flats: (Click or Enter)';
 toggleBtn.textContent = useFlats ? 'Show Sharps' : 'Show Flats';
+document.getElementById('2-column').textContent = 'Toggle layout:';
+document.getElementById('toggle-layout').textContent = 'Switch to 2 Columns';
 
 
 baseKey = flatToSharp[baseKey] || baseKey;
@@ -205,6 +207,20 @@ document.addEventListener('keydown', e => {
   }
   else if (key === 'enter') {
     toggleBtn.click();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const layoutButton = document.getElementById("toggle-layout");
+  const songContainer = document.getElementById("song-container");
+
+  if (layoutButton && songContainer) {
+    layoutButton.addEventListener("click", () => {
+      const isTwoCol = songContainer.classList.toggle("two-columns");
+      layoutButton.textContent = isTwoCol
+        ? "Switch to 1 Column"
+        : "Switch to 2 Columns";
+    });
   }
 });
 

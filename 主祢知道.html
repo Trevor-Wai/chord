@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
+
   <h1 id="h1" style="font-size: 28px;"></h1>
   <p id ="key-button-text"></p>
   <div id="key-buttons"></div>
@@ -17,8 +17,14 @@
   <p id ="flat-sharp" style="margin-top: 1rem;"></p>
   <button id="toggle-notation"></button>
 
+  <p id = "2-column" style="margin-top: 1rem;"></p>
+  <button id="toggle-layout"></button>
+
   <h2 id="song-title-label" style="font-size: 20px;font-weight:bolder" ></h2>
-  <pre id="song"></pre>
+  <div id="song-container">
+    <pre id="song"></pre>
+  </div>
+
   
   <script>
     let songTitle = '主祢知道'; // change (1)
@@ -51,8 +57,6 @@ Music Break 1
 | D#m7 - - - | Bmaj7 - - - | F#maj7 - - - | Dmaj9 - B/C# - |
 Music Break 2
 | D#m7 - - - | Bmaj7 - - - | F#maj7 - - - | B/C# - - - |
-
-
 Verse 2
    F#      C#/F       D#m7
 軟弱 主會     擁抱      
