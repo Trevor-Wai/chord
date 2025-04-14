@@ -11,7 +11,8 @@
     .selected { background-color: lightblue; }
     #key-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
     #shift-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
-    .section-header { display: inline-block; font-size: 18px; font-weight: bold; line-height: 1.4;}
+    .section-header { display: inline-block; font-size: 18px; font-weight: bold; line-height: 1.4; margin-top: 0.5rem; }
+
   </style>
 </head>
 <body>
@@ -34,10 +35,10 @@
     const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
     const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-    let songTitle = '耶和華尼西'; // change (1)
+    let songTitle = '活著為要敬拜祢'; 
     document.title = songTitle;
     document.getElementById('song-title').textContent = songTitle;
-    let baseKey = 'G'; // change (2)
+    let baseKey = 'D'; 
     let targetKey = baseKey; 
     let lastTargetKey = targetKey;
     let currentShift = 0;
@@ -47,61 +48,43 @@
     baseKey = flatToSharp[baseKey] || baseKey;
     targetKey = flatToSharp[targetKey] || targetKey;
 
-    const originalSong = // change (3) and done
+    const originalSong = 
      `
-Intro
-D C/D D G/D
+Verse
+              D　    　　　Dmaj7
+開我的眼睛 讓我看見你
+             G/D　      A/D
+你榮美彰顯 吸引我心
+              D　    　　　Dmaj7
+開我的耳朵 讓我聽見你
+             G/D　　    A
+每句話都讓我更愛你       
+
+Chorus 1
+       D　　A/C#　     Bm　　F#m
+活著為要敬拜你 活著為要全心來愛你
+       G　　　    D/F#　 Em　　A
+俯伏在你榮耀中 你的榮美 無人能及 
+       D　　A/C#　     Bm　　F#m
+活著為要敬拜你 活著為要全心來愛你
+       G　　　D/F#　　Em　     A                D
+永遠住在你殿中 昔在今在 永在的主            (我愛  你)
+
+Chorus 2
+    D　  F#m   Bm　 F#m
+喔 我愛你 喔   全心敬拜你
+       G　　 D/F#　　 Em　A
+日夜不停歌唱 哈利路亞 我愛你  
+    D　  F#m   Bm　 F#m
+喔 我愛你 喔 全心敬拜你
+                 G　　 D/F#　　 Em　A         D
+日夜不停歌唱 哈利路亞 我愛你   我愛  你
 
 
-Verse 1
-        D　D/F#　　  G
-祢說勝敗全在乎    祢
-Em    A      　D
-不靠刀   槍和銅戟
-     G　   A　　　　    F#m  　Bm
-祢應許我口出的歌聲能驅 走黑暗
-Em7　　　A
-教我依靠聖靈
-
-Verse 2
-     D　 D/F#       G
-祢揀選我 並無後  悔
-     Em  A　　　D
-稱 我  大能的戰士
-        G　　    A      　  F#m　　Bm
-當日祢領百姓出 曠野 也必領我走過
-       Em　　      　　A
-大衛的主 仍與我同在
-
-Chorus
-           D   A/C#         Bm　　  A
-我或向左或右 我    必聽見後有聲音說
-                G　 　D/F#      　Em        A
-「這是正路，要 行在其間！」
-            D   A/C#     Bm　　   A
-我或向左或右  祢的恩惠似雨覆蓋我
-           G  D/F#　　Em
-就像晝夜 照常輪轉
-    A　　　D
-祢如此臨近我
-
-Bridge
-        G　　A　　　  D  A/C#　Bm
-我在活人之地必得見祢   恩      惠
-        G    　    A　 　   D
-祢是耶和華尼西 祢必作王
-        G　     A　　　D　A/C#　Bm
-我在活人之地必得見祢    恩      惠
-           G    　A　　     D
-祢是耶和華尼西 永永遠遠
-
-Outro
-| D | A/C# | Bm | A | G | D/F# | Em | A |
-
-| D | C#m7b5  F#7b9 | Bm  D/A | G | D/F# | Em | A | D |
 
 
-   
+
+
 `;
 
     const songEl = document.getElementById('song');
@@ -193,7 +176,7 @@ Outro
     }
 
     function transposeChordLine(line, transposeAmount) {
-      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/]*)/g, (match, root, suffix) => {
+      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#]*)/g, (match, root, suffix) => {
         suffix = suffix || "";
         const usedFlat = root.includes('b');
         const normalizedRoot = flatToSharp[root] || root;

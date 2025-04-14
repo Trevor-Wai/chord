@@ -35,10 +35,10 @@
     const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
     const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-    let songTitle = '活著為要敬拜祢'; // change (1)
+    let songTitle = '迷羊'; 
     document.title = songTitle;
     document.getElementById('song-title').textContent = songTitle;
-    let baseKey = 'D'; // change (2)
+    let baseKey = 'C#'; 
     let targetKey = baseKey; 
     let lastTargetKey = targetKey;
     let currentShift = 0;
@@ -48,40 +48,55 @@
     baseKey = flatToSharp[baseKey] || baseKey;
     targetKey = flatToSharp[targetKey] || targetKey;
 
-    const originalSong = // change (3) and done
+    const originalSong = 
      `
-Verse
-              D　    　　　Dmaj7
-開我的眼睛 讓我看見你
-             G/D　      A/D
-你榮美彰顯 吸引我心
-              D　    　　　Dmaj7
-開我的耳朵 讓我聽見你
-             G/D　　    A
-每句話都讓我更愛你       
+Verse 1 
+C#　　　　　　F#maj7
+迷途破碎當中 主叫喚我
+C#　　　　　G#m　   Bb7
+迷羊祢也應許尋找
+  D#m　F#m6　 Fm　Bb7
+縱使失信軟弱 我主必不撇下
+  D#m　　　      　 　F#　　G#
+人在曠野 迷路了 忘掉祢是牧人
 
-Chorus 1
-       D　　A/C#　     Bm　　F#m
-活著為要敬拜你 活著為要全心來愛你
-       G　　　    D/F#　 Em　　A
-俯伏在你榮耀中 你的榮美 無人能及 
-       D　　A/C#　     Bm　　F#m
-活著為要敬拜你 活著為要全心來愛你
-       G　　　D/F#　　Em　     A                D
-永遠住在你殿中 昔在今在 永在的主            (我愛  你)
+Verse 2 
+C#　　　　　　F#maj7
+迷途破碎當中 主叫喚我
+C#　　　　　G#m　   Bb7
+迷羊祢也應許尋找
+  D#m　F#m6　 Fm　Bb7
+縱使失信軟弱 我主必不撇下
+  D#m　　C#/F      F#m　　G#
+人在曠野 頑逆撒野 神伸手牽我走
 
-Chorus 2
-    D　  F#m   Bm　 F#m
-喔 我愛你 喔   全心敬拜你
-       G　　 D/F#　　 Em　A
-日夜不停歌唱 哈利路亞 我愛你  
-    D　  F#m   Bm　 F#m
-喔 我愛你 喔 全心敬拜你
-                 G　　 D/F#　　 Em　A         D
-日夜不停歌唱 哈利路亞 我愛你   我愛  你
+Chorus
+    F#maj7         G#
+祢是我好牧人
+     Fm　　Bbm
+我願以一生稱頌祢
+   D#m　　C#/F
+如孩子般緊靠著祢
+  F#　　　　　　G#
+重享創造裡的甜味
+    F#maj7         G#
+如羊跟牧人
+     Fm　　Bb7
+求讓我聽見祢聲音
+   D#m　　C#/F
+尋覓千種的答案
+       F#　　　  G#　　C#
+難及於主手裡 深藏祢護蔭
 
-
-
+Bridge
+    F#　     G#　　Fm
+我是祢羊 祢必不使我缺乏
+  Bbm　　D#m　G#　　C#
+憂傷必得安慰 今我靈魂甦醒
+      F#　    G# 　 Fm　　　Bb7
+我是祢羊 死蔭幽谷 也跟著祢的杖
+      D#m   C#/F    F#   G#
+祢竿必領我 前路方向
 
 
 
@@ -176,7 +191,7 @@ Chorus 2
     }
 
     function transposeChordLine(line, transposeAmount) {
-      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#]*)/g, (match, root, suffix) => {
+      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#\+\-]*)/gi, (match, root, suffix) => {
         suffix = suffix || "";
         const usedFlat = root.includes('b');
         const normalizedRoot = flatToSharp[root] || root;

@@ -12,7 +12,6 @@
     #key-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
     #shift-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
     .section-header { display: inline-block; font-size: 18px; font-weight: bold; line-height: 1.4; margin-top: 0.5rem; }
-
   </style>
 </head>
 <body>
@@ -35,10 +34,10 @@
     const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
     const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-    let songTitle = '無價至寶'; // change (1)
+    let songTitle = '放下自己'; 
     document.title = songTitle;
     document.getElementById('song-title').textContent = songTitle;
-    let baseKey = 'Bb'; // change (2)
+    let baseKey = 'G'; 
     let targetKey = baseKey; 
     let lastTargetKey = targetKey;
     let currentShift = 0;
@@ -48,47 +47,47 @@
     baseKey = flatToSharp[baseKey] || baseKey;
     targetKey = flatToSharp[targetKey] || targetKey;
 
-    const originalSong = // change (3) and done
+    const originalSong = 
      `
 Intro
-Bbadd9 | Am7b5 D | Gm F | Eb F/Eb | Dm Gm | Ab | Eb | F
+| G  A | F#m Bm | Em A | D |
 Verse 1
-     Bb　      Cm/Bb
-我的名字 刻劃在你心中
-  Am7b5　D7  |　Gm　　Gm/F
-我的臉孔     深映在你眼中
-       Eb   F/Eb  |　Dm　Gm
-不是因為 我勢力才能
-     Cm　 |  　　　Fsus4  F11b9
-乃是因著 你奇妙寬容恩典
+          G  A         F#m    Bm
+放下自己   我跪下謙卑  
+  Em            A             D         D7
+不敢看祢 不敢見祢 我面伏向地
 
 Verse 2
-     Bb　      Cm/Bb
-雖然有時 我會跌倒軟弱
-  Am7b5　D7  |　Gm　　Gm/F
-你卻一直     包容不放棄我
-       Eb   F/Eb  |　Dm　Gm
-用你慈愛 緊緊的擁抱
-     Cm　 |  　　　F
-我讚美你 寶貴奇妙 大 愛
+          G  A         F#m    Bm
+發現自己   缺乏熱度了    
+  Em            A             D         D7
+安舒去過 馬虎去過 已乏力仰望
 
 Chorus
-       Bb　 Am  |  Gm
-唯有你配得 所有的讚美
-    Eb　 |  F
-一切尊貴 榮耀
-　F/Eb     D7 D/F#     Gm　F
-主 你的十架 是無價至寶
-    Eb  Bb/D　|  Cm  F | Bb
-你是我尊貴的主   耶 穌
+          G      A          F#m    Bm
+求祢教我怎可 日夜能聽祢話語
+Em            A             D         D7
+吸引我 我繼續 尋找盼望  
+          G      A          F#m    Bm
+求祢教我怎可 放下自己意念 尋找祢
+    Em         A           D  (Bm to Coda)
+單單手心向上 等候祢
 
-Music Break
-| Ebmaj7 | Ebm6 | Dm7 | G | Cm9 | Bb | F/A | F
+Bridge
+       G              A
+祢預備 耳朵未聽過
+  F#m       Bm     Em         A
+眼睛亦未看過 人心都估不到
+                D    D7
+祢給我最好  
+       G              A
+祢預備 耳朵未聽過
+  F#m      Bm     Em       E/G#          A
+眼睛亦未看過 人心都估不到  的最好
 
-
-
-
-
+Coda
+  Em   A      Dmaj7 
+單單手心向上 等候祢
 `;
 
     const songEl = document.getElementById('song');
@@ -180,7 +179,7 @@ Music Break
     }
 
     function transposeChordLine(line, transposeAmount) {
-      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#]*)/g, (match, root, suffix) => {
+      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/]*)/g, (match, root, suffix) => {
         suffix = suffix || "";
         const usedFlat = root.includes('b');
         const normalizedRoot = flatToSharp[root] || root;

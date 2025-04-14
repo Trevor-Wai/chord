@@ -35,10 +35,10 @@
     const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
     const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-    let songTitle = '用你雙手擁抱我 '; // change (1)
+    let songTitle = '用你雙手擁抱我 '; 
     document.title = songTitle;
     document.getElementById('song-title').textContent = songTitle;
-    let baseKey = 'D'; // change (2)
+    let baseKey = 'D'; 
     let targetKey = baseKey; 
     let lastTargetKey = targetKey;
     let currentShift = 0;
@@ -48,7 +48,7 @@
     baseKey = flatToSharp[baseKey] || baseKey;
     targetKey = flatToSharp[targetKey] || targetKey;
 
-    const originalSong = // change (3) and done
+    const originalSong = 
      `
 Intro
 D  A/C#  D  A/C# 

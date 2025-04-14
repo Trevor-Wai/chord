@@ -1,5 +1,5 @@
 git add .
-git commit -m "Update controls.html and refactor song layout"
+git commit -m "Updated to .js files"
 git push
 
 node combine-songs.js

@@ -35,10 +35,10 @@
     const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
     const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-    let songTitle = '看見我上帝'; // change (1)
+    let songTitle = '求主給這世代看見異象'; 
     document.title = songTitle;
     document.getElementById('song-title').textContent = songTitle;
-    let baseKey = 'Ab'; // change (2)
+    let baseKey = 'Bb'; 
     let targetKey = baseKey; 
     let lastTargetKey = targetKey;
     let currentShift = 0;
@@ -48,37 +48,69 @@
     baseKey = flatToSharp[baseKey] || baseKey;
     targetKey = flatToSharp[targetKey] || targetKey;
 
-    const originalSong = // change (3) and done
+    const originalSong = 
      `
-Intro 
-Fm    C#     Ab     Eb
-Verse
-Fm       C#          Ab       Eb
-謙卑屈膝 今禱告獻身心
-Fm       C#          Ab       Eb
-舉起雙手 今敬仰我君主
-Fm       C#          Ab       Eb
-獻上頌讚 今歸榮耀於祢
-Fm       C#          Ab       Eb
-敬拜上帝 願這生歸祢
+Verse 1
+     Bb         F/A
+光除掉黑暗
+               Eb           Ebm
+但亂世裡充斥了頹垣敗瓦
+       Cm          F
+你可否聽到我呼喊
+Bb         F/A
+你榮耀降臨
+          Eb           Ebm
+號召你的子女同負十架
+       Cm          D7
+角聲在全地奏響
 
-Chorus
-Fm               C#              Ab           Eb
-晨曦中看見我上帝 抬頭看 原來祢在這地
-Fm               C#              Ab           Eb
-祢話語重新光照    我最深的角落
-Fm               C#              Ab           Eb
-從此刻看見我上帝 抬頭看 原來祢在這地
-Fm               C#              Ab           Eb
-祢讓我重新得到 祢應許的盼望
-Fm
-感謝祢
+Pre-chorus:
+Ebmaj7            F6
+萬世君王，從黑暗世代裡
+           Dm7    Gm9
+綻放出光芒，覆蓋這地方
+       Ebmaj7  F   Dm7    Gm7
+被擄得釋放，瞎眼今得看見
+           Cm7          C/E     F
+願我心更新意念，聽見你差遣
 
-Bridge
-Fm       C#        Ab           Eb
-教我謙卑 獻祭給祢
-Fm       C#        Ab           Eb
-教我犧牲 背起十架
+Chorus:
+   Bb         F/A
+求主給這世代看見異象
+Gm7                           Eb
+從末世仰望你，必有迴響
+   Cm   Ebm6         Dm7     Gm7
+請讓我看見，心力全然奉獻
+             Cm7      C/E              F7
+能在這荒土忠心作戰，全是你恩典
+   Bb        Dm7
+求主給這世代看見異象
+Gm7                           Fm7   Bbadd9
+從末世仰望你，求被你差遣
+   Cm   Ebm6         Dm7     G7b13
+願我們興起，國度榮耀屬你
+    Cm                 F              Bb
+主光芒今統領這地，合一歸你
+
+Bridge:
+     Ebmaj7            F6
+萬世君王，從黑暗世代裡
+           Dm7    F/G
+綻放出光芒  覆蓋這地方
+        Cmaj7  D   Bm7    Em7
+被擄得釋放，瞎眼今得看見
+             Am7        A/C#        D7
+願我心更新意念，聽見你差遣
+
+
+     Ebmaj7            F6
+萬世君王，從黑暗世代裡
+           Dm7    G7b9
+綻放出光芒   照亮著前路
+        Ebmaj7  F   Dm7    Gm7
+被擄得釋放，瞎眼全然看見
+             Cm7        C/E        F7
+願我心抓緊信念，見證你恩典
 
 
 
@@ -175,7 +207,7 @@ Fm       C#        Ab           Eb
     }
 
     function transposeChordLine(line, transposeAmount) {
-      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#]*)/g, (match, root, suffix) => {
+      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/]*)/g, (match, root, suffix) => {
         suffix = suffix || "";
         const usedFlat = root.includes('b');
         const normalizedRoot = flatToSharp[root] || root;

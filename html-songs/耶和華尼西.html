@@ -11,8 +11,7 @@
     .selected { background-color: lightblue; }
     #key-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
     #shift-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
-    .section-header { display: inline-block; font-size: 18px; font-weight: bold; line-height: 1.4; margin-top: 0.5rem; }
-
+    .section-header { display: inline-block; font-size: 18px; font-weight: bold; line-height: 1.4;}
   </style>
 </head>
 <body>
@@ -35,10 +34,10 @@
     const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
     const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-    let songTitle = '避難所'; // change (1)
+    let songTitle = '耶和華尼西'; 
     document.title = songTitle;
     document.getElementById('song-title').textContent = songTitle;
-    let baseKey = 'C'; // change (2)
+    let baseKey = 'G'; 
     let targetKey = baseKey; 
     let lastTargetKey = targetKey;
     let currentShift = 0;
@@ -48,42 +47,61 @@
     baseKey = flatToSharp[baseKey] || baseKey;
     targetKey = flatToSharp[targetKey] || targetKey;
 
-    const originalSong = // change (3) and done
+    const originalSong = 
      `
-     Verse
-G                       C
-藏我在祢的翅膀下
-                       Am7
-就在那裏祢用慈聲對我說話
-           F        G            Em        Am
-白日太陽必不傷我 夜裏月亮也不害我
- Dm7                      C/G G
-此刻 只有耶穌作我的保障
+Intro
+D C/D D G/D
 
-Pre-Chorus
-     Am          Csus/G    G F
-再一次 呈獻我心於主祢面前
-     Am            Csus/G     F
-唯獨祢    能軟化此心 使我歡愉
-       F            G               C  G/B  Am7
-在世間 再沒有別人 可以奪去我的思緒
-       Dm7                     F/G          G
-我的一切全屬主祢 我的一切也都歸祢
+
+Verse 1
+        D　D/F#　　  G
+祢說勝敗全在乎    祢
+Em    A      　D
+不靠刀   槍和銅戟
+     G　   A　　　　    F#m  　Bm
+祢應許我口出的歌聲能驅 走黑暗
+Em7　　　A
+教我依靠聖靈
+
+Verse 2
+     D　 D/F#       G
+祢揀選我 並無後  悔
+     Em  A　　　D
+稱 我  大能的戰士
+        G　　    A      　  F#m　　Bm
+當日祢領百姓出 曠野 也必領我走過
+       Em　　      　　A
+大衛的主 仍與我同在
 
 Chorus
-   C  G/B   Am     Em
-耶穌耶穌 作我避難所
-   F           C/E        Dm          F/G
-祢吩咐祢的使者保護我 用祢的雙手托著我
-C   G/B        Am          C/G
-耶穌   祢必親眼觀看 親耳應允
-    F       C/E
-我每個祈求 每個禱告
-Dm7       F/G  G7 C
-耶穌  我只要祢  耶穌
+           D   A/C#         Bm　　  A
+我或向左或右 我    必聽見後有聲音說
+                G　 　D/F#      　Em        A
+「這是正路，要 行在其間！」
+            D   A/C#     Bm　　   A
+我或向左或右  祢的恩惠似雨覆蓋我
+           G  D/F#　　Em
+就像晝夜 照常輪轉
+    A　　　D
+祢如此臨近我
+
+Bridge
+        G　　A　　　  D  A/C#　Bm
+我在活人之地必得見祢   恩      惠
+        G    　    A　 　   D
+祢是耶和華尼西 祢必作王
+        G　     A　　　D　A/C#　Bm
+我在活人之地必得見祢    恩      惠
+           G    　A　　     D
+祢是耶和華尼西 永永遠遠
+
+Outro
+| D | A/C# | Bm | A | G | D/F# | Em | A |
+
+| D | C#m7b5  F#7b9 | Bm  D/A | G | D/F# | Em | A | D |
 
 
-
+   
 `;
 
     const songEl = document.getElementById('song');
@@ -175,7 +193,7 @@ Dm7       F/G  G7 C
     }
 
     function transposeChordLine(line, transposeAmount) {
-      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#]*)/g, (match, root, suffix) => {
+      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/]*)/g, (match, root, suffix) => {
         suffix = suffix || "";
         const usedFlat = root.includes('b');
         const normalizedRoot = flatToSharp[root] || root;

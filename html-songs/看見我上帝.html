@@ -35,10 +35,10 @@
     const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
     const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-    let songTitle = '連於你'; // change (1)
+    let songTitle = '看見我上帝'; 
     document.title = songTitle;
     document.getElementById('song-title').textContent = songTitle;
-    let baseKey = 'Bb'; // change (2)
+    let baseKey = 'Ab'; 
     let targetKey = baseKey; 
     let lastTargetKey = targetKey;
     let currentShift = 0;
@@ -48,27 +48,40 @@
     baseKey = flatToSharp[baseKey] || baseKey;
     targetKey = flatToSharp[targetKey] || targetKey;
 
-    const originalSong = // change (3) and done
+    const originalSong = 
      `
+Intro 
+Fm    C#     Ab     Eb
 Verse
-  Bbmaj7　　　F/A
-要常在你裡面 要常在你裡面
-   Eb                F
-凡有耳可聽  便應當承認
-    Bb　　　　　  F/A
-你常在我裡面 我要常在你裡面
-    Eb　　　       Eb/F             F
-凡有耳可聽 便   快快的聽
-                                   
+Fm       C#          Ab       Eb
+謙卑屈膝 今禱告獻身心
+Fm       C#          Ab       Eb
+舉起雙手 今敬仰我君主
+Fm       C#          Ab       Eb
+獻上頌讚 今歸榮耀於祢
+Fm       C#          Ab       Eb
+敬拜上帝 願這生歸祢
+
 Chorus
-    Bb　　      　　　　    Eb
-離不了你 我是枝子 你是葡萄樹
-    Cm7　　     　　Eb/F
-連於你 在你恩手那有難成事
-          Dm7     G7　　Cm7　Ebm
-願你修剪 我    頑逆的枝節
-        Eb    F      Bb
-清洗我最深的不潔
+Fm               C#              Ab           Eb
+晨曦中看見我上帝 抬頭看 原來祢在這地
+Fm               C#              Ab           Eb
+祢話語重新光照    我最深的角落
+Fm               C#              Ab           Eb
+從此刻看見我上帝 抬頭看 原來祢在這地
+Fm               C#              Ab           Eb
+祢讓我重新得到 祢應許的盼望
+Fm
+感謝祢
+
+Bridge
+Fm       C#        Ab           Eb
+教我謙卑 獻祭給祢
+Fm       C#        Ab           Eb
+教我犧牲 背起十架
+
+
+
 
 
 `;
@@ -162,7 +175,7 @@ Chorus
     }
 
     function transposeChordLine(line, transposeAmount) {
-      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/]*)/g, (match, root, suffix) => {
+      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#]*)/g, (match, root, suffix) => {
         suffix = suffix || "";
         const usedFlat = root.includes('b');
         const normalizedRoot = flatToSharp[root] || root;

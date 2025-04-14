@@ -12,6 +12,7 @@
     #key-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
     #shift-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
     .section-header { display: inline-block; font-size: 18px; font-weight: bold; line-height: 1.4; margin-top: 0.5rem; }
+
   </style>
 </head>
 <body>
@@ -34,10 +35,10 @@
     const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
     const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-    let songTitle = '放下自己'; // change (1)
+    let songTitle = '萬有都歸祢'; 
     document.title = songTitle;
     document.getElementById('song-title').textContent = songTitle;
-    let baseKey = 'G'; // change (2)
+    let baseKey = 'G'; 
     let targetKey = baseKey; 
     let lastTargetKey = targetKey;
     let currentShift = 0;
@@ -47,47 +48,38 @@
     baseKey = flatToSharp[baseKey] || baseKey;
     targetKey = flatToSharp[targetKey] || targetKey;
 
-    const originalSong = // change (3) and done
+    const originalSong = 
      `
-Intro
-| G  A | F#m Bm | Em A | D |
-Verse 1
-          G  A         F#m    Bm
-放下自己   我跪下謙卑  
-  Em            A             D         D7
-不敢看祢 不敢見祢 我面伏向地
-
-Verse 2
-          G  A         F#m    Bm
-發現自己   缺乏熱度了    
-  Em            A             D         D7
-安舒去過 馬虎去過 已乏力仰望
+Verse
+        C　 D/C   Bm7 Em7
+祢是榮耀  至美    尊崇
+  Am    D　　　　G
+萬有都 歸於祢名下
+        C   D/C        B7  Em
+配受傳頌  至偉至  聖尊 貴
+         C　Dsus4　          G   C/D
+願讚揚獨有主美善的真 諦
 
 Chorus
-          G      A          F#m    Bm
-求祢教我怎可 日夜能聽祢話語
-Em            A             D         D7
-吸引我 我繼續 尋找盼望  
-          G      A          F#m    Bm
-求祢教我怎可 放下自己意念 尋找祢
-    Em         A           D  (Bm to Coda)
-單單手心向上 等候祢
-
-Bridge
-       G              A
-祢預備 耳朵未聽過
-  F#m       Bm     Em         A
-眼睛亦未看過 人心都估不到
-                D    D7
-祢給我最好  
-       G              A
-祢預備 耳朵未聽過
-  F#m      Bm     Em       E/G#          A
-眼睛亦未看過 人心都估不到  的最好
+            G　　　          B7　　　　 Em
+齊向祢舉手傳揚    神的犧牲與十架
+            C         Am7　　　 F　　      C/D
+同頌祢深厚大愛      竟為我披戴荊棘 冠冕
+            G　　　          B/D#　　  C#m7b5
+原是祢恩典降臨     眾山海都震撼 呼應
+        C     G/B　　　     Am7　C/D    G
+讓我靈為祢 歌    獻奉至誠頌讚 到萬    世
 
 Coda
-  Em   A      Dmaj7 
-單單手心向上 等候祢
+      C　     G/B
+讓我靈為祢 歌
+         Am7　  C/D　   G
+獻奉至誠頌讚 到萬    世
+
+
+
+
+
 `;
 
     const songEl = document.getElementById('song');
@@ -179,7 +171,7 @@ Coda
     }
 
     function transposeChordLine(line, transposeAmount) {
-      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/]*)/g, (match, root, suffix) => {
+      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#]*)/g, (match, root, suffix) => {
         suffix = suffix || "";
         const usedFlat = root.includes('b');
         const normalizedRoot = flatToSharp[root] || root;

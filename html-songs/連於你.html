@@ -35,10 +35,10 @@
     const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
     const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
 
-    let songTitle = '逃召'; // change (1)
+    let songTitle = '連於你'; 
     document.title = songTitle;
     document.getElementById('song-title').textContent = songTitle;
-    let baseKey = 'C#'; // change (2)
+    let baseKey = 'Bb'; 
     let targetKey = baseKey; 
     let lastTargetKey = targetKey;
     let currentShift = 0;
@@ -48,50 +48,27 @@
     baseKey = flatToSharp[baseKey] || baseKey;
     targetKey = flatToSharp[targetKey] || targetKey;
 
-    const originalSong = // change (3) and done
+    const originalSong = 
      `
-     Verse
-C#　　　　  G#/C  A#m
-竹林深處 我試著隱於荒野
-F#　　 G#　      　C#
-山河冰川 我更是渺少
-C#　　　　  G#/C  A#m
-星寰北斗 哪會是我可測透
-F#　　F#/G#　    　C#
-生還可以 便已足夠
-
-Chorus 1
-                F#　  　G#　　C#
-其實太累了 但這呼召逃不了
-                F#　  　   G#　　C#
-走著走著遇見了 這枯萎羅騰樹
-           F#      　G#　　      Fm　A#m
-而我的生命 配不配得上 祢的召命
-   D#m   　G#　　　C#
-可以 讓我靠著祢可以
-
-Bridge
-   F#　  G#　Fm    A#m
-我躲不開祢的慈  愛
-  D#m　　   G#　　C#
-祢不止息對我忍耐
-   F#　 G#　   Fm   A#m
-眾山深海 已包圍  我
-   D#m   G#　  A#m
-讓我深  知祢在
-
-Chorus 2
-                F#　　      　　　Fm
-榮耀祢才重要 為這呼召活一次
-            F#　　 G#　　　  C#
-受苦別放棄 接上堅穩葡萄樹
-            F#　　  G#　　　 Fm　  A#m
-而我的生命 踏上呼召才叫得活命
-       D#m　   G#　　　 C#
-走下去讓我靠著祢心跳
-
-
-
+Verse
+  Bbmaj7　　　F/A
+要常在你裡面 要常在你裡面
+   Eb                F
+凡有耳可聽  便應當承認
+    Bb　　　　　  F/A
+你常在我裡面 我要常在你裡面
+    Eb　　　       Eb/F             F
+凡有耳可聽 便   快快的聽
+                                   
+Chorus
+    Bb　　      　　　　    Eb
+離不了你 我是枝子 你是葡萄樹
+    Cm7　　     　　Eb/F
+連於你 在你恩手那有難成事
+          Dm7     G7　　Cm7　Ebm
+願你修剪 我    頑逆的枝節
+        Eb    F      Bb
+清洗我最深的不潔
 
 
 `;
@@ -185,7 +162,7 @@ Chorus 2
     }
 
     function transposeChordLine(line, transposeAmount) {
-      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#]*)/g, (match, root, suffix) => {
+      return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/]*)/g, (match, root, suffix) => {
         suffix = suffix || "";
         const usedFlat = root.includes('b');
         const normalizedRoot = flatToSharp[root] || root;
