@@ -2,4 +2,4 @@ git add .
 git commit -m "Updated to .js files"
 git push
 
-node combine-songs.js
+node generate-songs.js

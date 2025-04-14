@@ -1,12 +1,10 @@
-// generate-songs.js
-
 const fs = require('fs');
 const path = require('path');
 
 const songsDir = path.join(__dirname, 'songs');
 const outputFile = path.join(__dirname, 'songs-data.json');
 
-const files = fs.readdirSync(songsDir).filter(file => file.endsWith('.js'));
+const files = fs.readdirSync(songsDir).filter(file => file.endsWith('.js') && file !== 'example.js');
 
 const songs = files.map(file => {
   const song = require(path.join(songsDir, file));

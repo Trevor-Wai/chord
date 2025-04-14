@@ -20,28 +20,40 @@
 </head>
 <body>
   <h1>🎶 Welcome to the Chord Database</h1>
-  <p>Select a hymn:</p>
+
+  <input type="text" id="search" placeholder="Search songs..." style="padding: 0.5rem; width: 100%; max-width: 400px; font-size: 16px; margin-bottom: 1rem;" />
 
   <ul id="song-list"></ul>
 
   <script>
+    let songs = [];
+
     fetch('songs-data.json')
       .then(res => res.json())
-      .then(songs => {
-        const list = document.getElementById("song-list");
-  
-        // 🔠 Sort the songs alphabetically by title
-        songs.sort((a, b) => a.title.localeCompare(b.title));
-  
-        songs.forEach(song => {
-          const li = document.createElement("li");
-          const link = document.createElement("a");
-          link.href = "player.html?song=" + encodeURIComponent(song.title);
-          link.textContent = song.title;
-          li.appendChild(link);
-          list.appendChild(li);
-        });
+      .then(data => {
+        songs = data.sort((a, b) => a.title.localeCompare(b.title));
+        renderSongList(songs);
       });
-  </script>  
+
+    function renderSongList(songArray) {
+      const list = document.getElementById("song-list");
+      list.innerHTML = '';
+      songArray.forEach(song => {
+        const li = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = "player.html?song=" + encodeURIComponent(song.title);
+        link.textContent = song.title;
+        li.appendChild(link);
+        list.appendChild(li);
+      });
+    }
+
+    document.getElementById('search').addEventListener('input', function (e) {
+      const query = e.target.value.toLowerCase();
+      const filtered = songs.filter(song => song.title.toLowerCase().includes(query));
+      renderSongList(filtered);
+    });
+  </script>
 </body>
+
 </html>
