@@ -21,3 +21,5 @@ const output = `const songs = ${JSON.stringify(songs, null, 2)};`;
 fs.writeFileSync('songs.js', output);
 
 console.log('✅ songs.js updated with', songs.length, 'songs');
+
+// node generate-songs.js
