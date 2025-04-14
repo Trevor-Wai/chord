@@ -2,4 +2,4 @@ git add .
 git commit -m "Update controls.html and refactor song layout"
 git push
 
-node generate-songs.js
+node combine-songs.js

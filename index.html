@@ -24,18 +24,24 @@
 
   <ul id="song-list"></ul>
 
-  <script src="songs.js"></script>
   <script>
-    const list = document.getElementById("song-list");
-
-    songs.forEach(song => {
-      const li = document.createElement("li");
-      const link = document.createElement("a");
-      link.href = song.file;
-      link.textContent = song.title;
-      li.appendChild(link);
-      list.appendChild(li);
-    });
-  </script>
+    fetch('songs-data.json')
+      .then(res => res.json())
+      .then(songs => {
+        const list = document.getElementById("song-list");
+  
+        // 🔠 Sort the songs alphabetically by title
+        songs.sort((a, b) => a.title.localeCompare(b.title));
+  
+        songs.forEach(song => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = "player.html?song=" + encodeURIComponent(song.title);
+          link.textContent = song.title;
+          li.appendChild(link);
+          list.appendChild(li);
+        });
+      });
+  </script>  
 </body>
 </html>
