@@ -37,6 +37,7 @@ function loadAndRenderSong() {
 
 function transposeChordLine(line, shift) {
   return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#+\-]*)/g, (match, root, suffix) => {
+    suffix = suffix.replace('b', '♭');
     const normalizedRoot = flatToSharp[root] || root;
     const index = chords.indexOf(normalizedRoot);
     if (index === -1) return match;

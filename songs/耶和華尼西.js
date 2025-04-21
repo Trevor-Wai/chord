@@ -51,6 +51,6 @@ Bridge
 Outro
 | D | A/C# | Bm | A | G | D/F# | Em | A |
 
-| D | C#m7b5  F#7b9 | Bm  D/A | G | D/F# | Em | A | D |
+| D | C#m7b5  F#7b9 | Bm | D/A | G | D/F# | Em | A | D |
 `.trim()
 };

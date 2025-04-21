@@ -1,6 +1,6 @@
 module.exports = {
   title: "如此認識我",
-  baseKey: "Eb#",
+  baseKey: "Eb",
   lyrics: `
 Verse 1 
   Eb　Bb/D　　    Cm　       Eb/Bb
