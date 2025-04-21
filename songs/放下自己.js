@@ -23,7 +23,7 @@ Em            A             D         D7
 吸引我 我繼續 尋找盼望  
           G      A          F#m    Bm
 求祢教我怎可 放下自己意念 尋找祢
-    Em         A           D  (Bm to Coda)
+    Em         A           D  (Bm)
 單單手心向上 等候祢
 
 Bridge

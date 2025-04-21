@@ -1,6 +1,6 @@
 module.exports = {
   title: "我的日子如何",
-  baseKey: "C",
+  baseKey: "C#",
   lyrics: `
 Verse 1:
 C#　　　　　F#maj7

@@ -1,5 +1,5 @@
 module.exports = {
-  title: "用你雙手擁抱我 ",
+  title: "用祢雙手擁抱我 ",
   baseKey: "D",
   lyrics: `
 Intro

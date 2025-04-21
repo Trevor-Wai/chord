@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title id="song-title">Loading...</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1 style="font-size: 28px;">Hymn Chord Database</h1>
+  <p>Select the key you want to play in: (Click, Left & Right Arrow or A & D)</p>
+  <div id="key-buttons"></div>
+
+  <p style="margin-top: 1rem;">Capo: (Click, Up & Down Arrow or W & S)</p>
+  <div id="shift-buttons"></div>
+
+  <p style="margin-top: 1rem;">Switch between sharp and flats: (Click or Enter)</p>
+  <button id="toggle-notation"></button>
+
+  <!-- <p>Switch layout:</p> -->
+  <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+    <label for="split-slider">Adjust Split (% Left): </label>
+    <input type="range" id="split-slider" min="0" max="100" value="0">
+    <span id="slider-value">100%</span>
+    <button id="copy-button">Copy Chords</button>
+  </div>  
+
+  <h2 id="song-title-label" style="font-size: 20px;font-weight:bolder"></h2>
+  <div id="song-container" class="two-columns">
+    <div id="left-column" class="column"></div>
+    <div id="right-column" class="column"></div>
+  </div>
+  
+
+  <script>
+    const chords = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    const flatToSharp = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#', 'Cb': 'B', 'Fb': 'E' };
+    const sharpToFlat = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
+
+    function loadAndRenderSong() {
+      const params = new URLSearchParams(window.location.search);
+      const selectedSong = params.get("song");
+
+      fetch("songs-data.json")
+        .then(res => res.json())
+        .then(data => {
+          const songData = data.find(s => s.title === selectedSong);
+          if (!songData) {
+            document.body.innerHTML = "<h2>Song not found 😢</h2>";
+            return;
+          }
+
+          const songTitle = songData.title;
+          let baseKey = flatToSharp[songData.baseKey] || songData.baseKey;
+          let targetKey = baseKey;
+          let currentShift = 0;
+          useFlats = flatToSharp[songData.baseKey] ? true : false;
+          let shouldClickSelected = false;
+
+          const songEl = document.getElementById('song');
+          const keyButtonsEl = document.getElementById('key-buttons');
+          const shiftButtonsEl = document.getElementById('shift-buttons');
+          const toggleBtn = document.getElementById('toggle-notation');
+
+          document.title = songTitle;
+          document.getElementById('song-title').textContent = songTitle;
+          toggleBtn.textContent = useFlats ? 'Show Sharps' : 'Show Flats';
+          // document.getElementById('toggle-layout').textContent = 'Switch to 2 Columns';
+
+          const originalSong = songData.lyrics;
+
+          function getSemitoneShift(fromKey, toKey) {
+            const fromIndex = chords.indexOf(fromKey);
+            const toIndex = chords.indexOf(toKey);
+            return (toIndex - fromIndex + 12) % 12;
+          }
+
+          function transposeChordLine(line, transposeAmount) {
+            return line.replace(/([A-G](?:#|b)?)([a-z0-9()\/#+\-]*)/g, (match, root, suffix) => {
+              suffix = suffix || "";
+              suffix = suffix.replace('b', '♭');
+              const usedFlat = root.includes('b');
+              const normalizedRoot = flatToSharp[root] || root;
+              const rootIndex = chords.indexOf(normalizedRoot);
+              if (rootIndex === -1) return match;
+              const newIndex = (rootIndex + transposeAmount + chords.length) % chords.length;
+              let newRoot = chords[newIndex];
+              if (useFlats && sharpToFlat[newRoot]) newRoot = sharpToFlat[newRoot].replace('b', '♭');
+              return `<span class="chord">${newRoot + suffix}</span>`;
+            });
+          }
+
+          function transposeAndDisplay(additionalShift) {
+            const shiftFromBase = getSemitoneShift(baseKey, targetKey);
+            const totalShift = (shiftFromBase + parseInt(additionalShift)) % 12;
+            const lines = originalSong.trim().split('\n');
+            const transposed = [];
+            const sectionHeaderPattern = /^(Intro|Verse|Pre[- ]?Chorus|Chorus|Bridge|Coda|Music Break|MB|Outro|Refrain)\b/i;
+
+            for (let i = 0; i < lines.length; i++) {
+              const rawLine = lines[i];
+              const trimmedLine = rawLine.trim();
+              let processedLine = '';
+
+              if (sectionHeaderPattern.test(trimmedLine)) {
+                processedLine = `<span class="section-header">${trimmedLine}</span>`;
+              } else if (i % 2 === 1) {
+                processedLine = `<div class="chord-line">${transposeChordLine(trimmedLine, totalShift)}</div>`;
+              } else {
+                processedLine = trimmedLine;
+              }
+
+              const leadingSpaces = rawLine.match(/^ */)?.[0] || '';
+              const nbsp = '&nbsp;'.repeat(leadingSpaces.length);
+              transposed.push(nbsp + processedLine);
+            }
+
+            const sliderValue = 100 - parseInt(document.getElementById("split-slider").value);
+            const halfway = Math.ceil(transposed.length * (sliderValue / 100));
+
+            // const leftContent = transposed.slice(0, halfway).join('\n');
+            // const rightContent = transposed.slice(halfway).join('\n');
+
+            document.getElementById("left-column").innerHTML = transposed.slice(0, splitIndex).join('\n');
+            document.getElementById("right-column").innerHTML = transposed.slice(splitIndex).join('\n');
+
+            let displayKey = useFlats && sharpToFlat[targetKey] ? sharpToFlat[targetKey] : targetKey;
+            displayKey = displayKey.replace('b', '♭');
+            document.getElementById('song-title-label').textContent = `${songTitle} (${displayKey}) | Capo: ${-currentShift}`;
+          }
+
+          function renderKeyButtons() {
+            keyButtonsEl.innerHTML = '';
+            chords.forEach(sharpKey => {
+              const btn = document.createElement('button');
+              let displayKey = useFlats && sharpToFlat[sharpKey] ? sharpToFlat[sharpKey] : sharpKey;
+              displayKey = displayKey.replace('b', '♭');
+              const isBase = sharpKey === baseKey;
+              const isTarget = sharpKey === targetKey;
+
+              btn.textContent = isBase ? `${displayKey} (original)` : displayKey;
+              btn.dataset.key = sharpKey;
+              if (isTarget) btn.classList.add('selected');
+
+              btn.onclick = () => {
+                document.querySelectorAll('#key-buttons button').forEach(b => {
+                  const k = b.dataset.key;
+                  let label = useFlats && sharpToFlat[k] ? sharpToFlat[k] : k;
+                  label = label.replace('b', '♭');
+                  b.classList.remove('selected');
+                  b.textContent = k === baseKey ? `${label} (original)` : label;
+                });
+
+                const previouslySelectedKey = targetKey;
+                targetKey = sharpKey;
+                if (targetKey !== previouslySelectedKey) currentShift = 0;
+
+                btn.classList.add('selected');
+                btn.textContent = sharpKey === baseKey ? `${displayKey} (original)` : displayKey;
+                transposeAndDisplay(currentShift);
+                renderShiftButtons();
+              };
+
+              keyButtonsEl.appendChild(btn);
+            });
+          }
+
+          function renderShiftButtons() {
+            shiftButtonsEl.innerHTML = '';
+            const baseIndex = chords.indexOf(targetKey);
+
+            for (let i = 0; i > -12; i--) {
+              const btn = document.createElement('button');
+              const sharpKey = chords[(baseIndex + i + 12) % 12];
+              let displayKey = useFlats && sharpToFlat[sharpKey] ? sharpToFlat[sharpKey] : sharpKey;
+              displayKey = displayKey.replace('b', '♭');
+              btn.textContent = `${-i} (${displayKey})`;
+              btn.dataset.shift = i;
+
+              btn.onclick = () => {
+                document.querySelectorAll('#shift-buttons button').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                currentShift = i;
+                transposeAndDisplay(i);
+              };
+
+              if (i === currentShift) btn.classList.add('selected');
+              shiftButtonsEl.appendChild(btn);
+            }
+          }
+
+          toggleBtn.onclick = () => {
+            useFlats = !useFlats;
+            toggleBtn.textContent = useFlats ? 'Show Sharps' : 'Show Flats';
+            shouldClickSelected = true;
+            renderKeyButtons();
+            renderShiftButtons();
+            transposeAndDisplay(currentShift);
+          };
+
+          document.getElementById("toggle-layout").addEventListener("click", () => {
+            const songContainer = document.getElementById("song-container");
+            const isTwoCol = songContainer.classList.toggle("two-columns");
+            document.getElementById("toggle-layout").textContent = isTwoCol ? "Switch to 1 Column" : "Switch to 2 Columns";
+          });
+
+          renderKeyButtons();
+          renderShiftButtons();
+          transposeAndDisplay(0);
+
+          document.addEventListener('keydown', e => {
+            const keyIndex = chords.indexOf(targetKey);
+            const key = e.key.toLowerCase();
+
+            if (e.key === 'ArrowLeft' || key === 'a') {
+              const newKey = chords[(keyIndex - 1 + chords.length) % chords.length];
+              document.querySelector(`[data-key='${newKey}']`)?.click();
+            } else if (e.key === 'ArrowRight' || key === 'd') {
+              const newKey = chords[(keyIndex + 1) % chords.length];
+              document.querySelector(`[data-key='${newKey}']`)?.click();
+            } else if (e.key === 'ArrowUp' || key === 'w') {
+              currentShift = currentShift > -11 ? currentShift - 1 : 0;
+              document.querySelector(`[data-shift='${currentShift}']`)?.click();
+            } else if (e.key === 'ArrowDown' || key === 's') {
+              currentShift = currentShift < 0 ? currentShift + 1 : -11;
+              document.querySelector(`[data-shift='${currentShift}']`)?.click();
+            } else if (key === 'enter') {
+              toggleBtn.click();
+            }
+          });
+        });
+      }
+
+  document.addEventListener("DOMContentLoaded", loadAndRenderSong);
+
+  document.getElementById("split-slider").addEventListener("input", () => {
+    document.getElementById("slider-value").textContent = document.getElementById("split-slider").value + "%";
+    transposeAndDisplay(currentShift);
+});
+
+
+  </script>
+
+
+  <script>
+    document.getElementById("copy-button").addEventListener("click", async () => {
+    const left = document.getElementById("left-column").innerHTML;
+    const right = document.getElementById("right-column").innerHTML;
+
+    const htmlContent = `
+      <style>
+        body { font-family: Arial, Helvetica, sans-serif; font-size: 16px; }
+        .chord { color: #3b83bf; display: inline-block; line-height: 1; } 
+        .chord-line { display: inline-block; margin-top: 0.8rem; line-height: 1; }
+        .section-header { font-weight: bold; margin-top: 0.5rem; }
+        .copy-columns { display: flex; gap: 2rem; }
+        .copy-column { flex: 1; white-space: pre-wrap; }
+      </style>
+      <div class="copy-columns">
+        <div class="copy-column">${left}</div>
+        <div class="copy-column">${right}</div>
+      </div>
+    `;
+
+    try {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          "text/html": new Blob([htmlContent], { type: "text/html" })
+        })
+      ]);
+      alert("Copied to clipboard! 🎉");
+    } catch (err) {
+      alert("Failed to copy: " + err);
+    }
+  });
+
+  </script>
+
+</body>
+</html>

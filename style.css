@@ -1,10 +1,12 @@
 body { font-family: Arial, Helvetica, sans-serif; font-size: 16px; padding-left: 10%; padding-bottom: 5%; max-width: none; width: 85%; line-height: 1.4; }
 pre { white-space: pre-wrap; font-family: Arial, Helvetica, sans-serif; }
 button { margin: 0.25rem; padding: 0.5rem 0.75rem; cursor: pointer; }
-.chord { color: #3b83bf; } /* font-weight: bold  */ 
+.chord { color: #3b83bf; display: inline-block; line-height: 1;} /* font-weight: bold  */ 
+.chord-line { display: inline-block; margin-top: 0.5rem; margin-bottom: 0rem; line-height: 1;}
 .selected { background-color: lightblue; }
 #key-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
 #shift-buttons { display: flex; flex-wrap: nowrap; white-space: nowrap; overflow-x: auto; gap: 0.25rem; }
 .section-header { display: inline-block; font-size: 18px; font-weight: bold; line-height: 1.4; margin-top: 0.5rem; }
 #song-container {width: 100%;}
-.two-columns {column-count: 2;column-gap: 2rem;}
+.two-columns {display: flex; gap: 2 rem;}
+
