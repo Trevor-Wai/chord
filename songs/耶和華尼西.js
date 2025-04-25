@@ -4,8 +4,6 @@ module.exports = {
   lyrics: `
 Intro
 D C/D D G/D
-
-
 Verse 1
         D　D/F#　　  G
 祢說勝敗全在乎    祢
