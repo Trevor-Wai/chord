@@ -51,9 +51,9 @@ Bridge:
 萬世君王，從黑暗世代裡
            Dm7    F/G
 綻放出光芒  覆蓋這地方
-        Cmaj7  D   Bm7    Em7
+        Ebmaj7  F   Dm7    Gm7
 被擄得釋放，瞎眼今得看見
-             Am7        A/C#        D7
+             Cm7        C/E        F7
 願我心更新意念，聽見你差遣
 
 

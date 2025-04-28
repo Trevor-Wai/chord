@@ -14,7 +14,7 @@ Ebadd9   G#m/Eb     Gm7      Cm7
   Fm                     　Bb13       Bb7(b9)
 付上力氣 無盡代價   無奈 仍是嘆息 死心嗎
 
-Chorus
+Chorus 1
 Eb      　　　　 Bb/D
  橫樑斷了快瘋了 求拔這一根刺
 Cm7             Bbm 　              G#
