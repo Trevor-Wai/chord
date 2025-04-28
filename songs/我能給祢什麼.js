@@ -4,7 +4,7 @@ module.exports = {
   lyrics: `
 
 Intro
-| Bbadd9 Bbm/C# F/A -  D11 Dm7 || Gm7 F/A Bbm9 C7 |
+| Bbadd9 Bbm/C# F/A -  D11 Dm7 | Gm7 F/A Bbm9 C7 |
 Verse
     F            C/E
 我能給祢什麼
