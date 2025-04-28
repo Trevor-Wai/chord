@@ -37,8 +37,6 @@ Am7         D7     G
 
 Music Break
 Cmaj7 D Em Bm
-
-
 Bridge 
  C       D                        
 我向祢 獻上我心
