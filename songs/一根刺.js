@@ -3,7 +3,7 @@ module.exports = {
   baseKey: "Eb",
   lyrics: `
 Intro
-Eb Dm7b5 G/B Cm Bb Am7b5 || Fm Eb/G Ab - Bb13 - Bb7b9
+| Eb Dm7b5 G/B | Cm Bb Am7b5 | Fm Eb/G Ab | Bb13  Bb7b9 |
 Verse 1 　
 Ebadd9   Fdim/Eb   Ebadd9  Fdim/Eb
 心 彷彿不再癒合    
@@ -31,7 +31,7 @@ Cm7             Bbm 　             G#
  溶溶爛爛抹不去  苦苦     中仰望耶 穌
   A#/G#     Gm　 C7
 掙扎流淚痛着    禱告
-Fm7　　Bb7add13　　　　 Eb   
+Fm7　　Bb13　　　　 Eb   
 盼求祢 重投失敗第一身的勇氣()
 
 Music Break
@@ -49,7 +49,7 @@ Ebadd9   G#m/Eb     Gm7      Cm7
 Chorus 2
 Eb      　　　　Dm7b5            G/B
 茫然頓悟覺醒了　明白這一根刺
-Cm7  Bm   Bbm 　 Eb      G#
+Cm7  Bdim  Bbm 　 Eb      G#
 明明絕望再一次 主竟把軟弱撐起
 A#/G#     Gm　 Cm7
 不會是完美    不會被忘記
@@ -63,11 +63,11 @@ Cm7             Bbm 　              Am7b5
 仍然活下去的我 好比小百合野花
 D  Gm　 C7
 把軟弱拿去自誇
-Fm7　　Bb7add13　　　　 Eb   
+Fm7　　Bb13　　　　 Eb   
 祢陪我　迎臨生命突破的一剎那
 
 Outro
-Eb Dm7b5 G/B Cm Bb Am7b5 || Fm Eb/G Ab Gmaj7
+| Eb Dm7b5 G/B | Cm Bb Am7b5 | Fm Eb/G Ab | Gmaj7 |
 
   
   `.trim()
