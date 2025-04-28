@@ -45,12 +45,12 @@ Chorus 2 (after Bridge)
 耶穌更新我心 耶穌改寫我的生命
          Bbm7        Ab/C       C#maj7       Eb
 洗淨我 舊事已過 來成就新創造裡的我
-      |  Fm -  -  Eb/G |  Ab |    Gm7   |  C  - Bb/D - Edim  
+      |  Fm -  -  Eb/G |  Ab |    Gm7   |  C  - Dm - Edim  
 耶穌興起我心               靈火於心裡再高升
 |  Fm -  Ab/Eb  -  | Dm7b5  | C#maj7   Eb |  
   催促(我) (加)我力勁() 傳揚十架不朽見證
 
 Outro
-C#maj7          Eb             Fm              Cm7
+C#maj7          Eb             Ab              Cm7
 `.trim()
 };
