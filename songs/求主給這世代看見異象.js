@@ -49,7 +49,7 @@ Gm7                           Fm7   Bbadd9
 Bridge:
      Ebmaj7            F6
 萬世君王，從黑暗世代裡
-           Dm7    F/G
+           Dm7         F/G
 綻放出光芒  覆蓋這地方
         Ebmaj7  F   Dm7    Gm7
 被擄得釋放，瞎眼今得看見
@@ -59,7 +59,7 @@ Bridge:
 
      Ebmaj7            F6
 萬世君王，從黑暗世代裡
-           Dm7    G7b9
+           Dm7          G7b9
 綻放出光芒   照亮著前路
         Ebmaj7  F   Dm7    Gm7
 被擄得釋放，瞎眼全然看見
