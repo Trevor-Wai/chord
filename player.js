@@ -69,6 +69,7 @@ function transposeAndDisplay(additionalShift) {
 
   document.getElementById("left-column").innerHTML = transposed.slice(0, splitIndex).join('\n');
   document.getElementById("right-column").innerHTML = transposed.slice(splitIndex).join('\n');
+  // document.getElementById("song").innerHTML = transposed.join('\n');
 
   let displayKey = useFlats && sharpToFlat[targetKey] ? sharpToFlat[targetKey].replace('b', '♭') : targetKey;
   document.getElementById('song-title-label').textContent = `${document.title} (${displayKey}) | Capo: ${-currentShift}`;

@@ -4,26 +4,6 @@
   <meta charset="UTF-8">
   <title id="song-title">Loading...</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .two-columns {
-      display: flex;
-      gap: 2rem;
-    }
-    .column {
-      flex: 1;
-      white-space: pre-wrap;
-      font-family: Arial, sans-serif;
-    }
-    .chord { color: #3b83bf; display: inline-block; line-height: 1;} 
-    .section-header {
-      display: inline-block;
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 1.4;
-      margin-top: 0.5rem;
-    }
-    .chord-line { display: inline-block; margin-top: 0.5rem; margin-bottom: 0rem; line-height: 1;}
-  </style>
 </head>
 <body>
 
@@ -45,9 +25,13 @@
   </div>
 
   <h2 id="song-title-label" style="font-size: 20px;font-weight:bolder"></h2>
-  <div id="song-container" class="two-columns">
+  <!-- <div id="song-container" class="two-columns">
     <div id="left-column" class="column"></div>
     <div id="right-column" class="column"></div>
+  </div> -->
+  <div id="song-container" class="two-columns">
+    <pre id="left-column" class="column"></pre>
+    <pre id="right-column" class="column" ></pre>
   </div>
 
   <script src="player.js"></script>

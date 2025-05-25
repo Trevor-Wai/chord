@@ -9,4 +9,4 @@ button { margin: 0.25rem; padding: 0.5rem 0.75rem; cursor: pointer; }
 .section-header { display: inline-block; font-size: 18px; font-weight: bold; line-height: 1.4; margin-top: 0.5rem; }
 #song-container {width: 100%;}
 .two-columns {display: flex; gap: 2 rem;}
-
+.column {flex: 1; white-space: pre-wrap; font-family: Arial, sans-serif;}
