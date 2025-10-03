@@ -8,7 +8,7 @@
 <body>
 
   <h1 style="font-size: 28px;">Hymn Chord Database</h1>
-  <p>Select the key you want to play in: (Click, Up & Down Arrow or W & S)</p>
+  <p>Select the key you want to play in: (Click or W & S)</p>
   <div id="key-buttons"></div>
 
   <p style="margin-top: 1rem;">Capo:</p>
@@ -17,11 +17,10 @@
   <p style="margin-top: 1rem;">Switch between sharp and flats: (Click or Enter)</p>
   <button id="toggle-notation"></button>
 
-  <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
-    <label for="split-slider">Adjust Split % (Drag, Left & Right Arrow or A & D): </label>
-    <input type="range" id="split-slider" min="0" max="100" value="0">
-    <span id="slider-value">0%</span>
-    <button id="copy-button">Copy Chords</button>
+  <div style="margin-top: 1rem; display: flex;  align-items: center;">
+    <label for="split-slider">Adjust Split % (Drag or A & D): </label>
+    <input type="range" id="split-slider" min="0" max="100" value="50" style="margin-left: 20rem; margin-right: 3rem">
+    <span id="slider-value">50%</span>
   </div>
 
   <h2 id="song-title-label" style="font-size: 20px;font-weight:bolder"></h2>

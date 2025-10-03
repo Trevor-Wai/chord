@@ -140,16 +140,16 @@ document.addEventListener('keydown', e => {
   const slider = document.getElementById("split-slider");
   const current = parseInt(slider.value, 10);
 
-  if (e.key === 'ArrowUp' || key === 'w') {
+  if (key === 'w') {
     const newKey = chords[(keyIndex + 1) % chords.length];
     document.querySelector(`[data-key='${newKey}']`)?.click();
-  } else if (e.key === 'ArrowDown' || key === 's') {
+  } else if (key === 's') {
     const newKey = chords[(keyIndex - 1 + chords.length) % chords.length];
     document.querySelector(`[data-key='${newKey}']`)?.click();
-  } else if (e.key === 'ArrowLeft' || key === 'a') {
+  } else if (key === 'a') {
     slider.value = current > 0 ? current - 5 : 0;
     slider.dispatchEvent(new Event('input'));
-  } else if (e.key === 'ArrowRight' || key === 'd') {
+  } else if (key === 'd') {
     slider.value = current < 100 ? current + 5 : 100;
     slider.dispatchEvent(new Event('input'));
   } else if (key === 'enter') {
